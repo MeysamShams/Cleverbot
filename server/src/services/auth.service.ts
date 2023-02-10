@@ -2,11 +2,12 @@ import { Error } from '../models/error.model'
 import { hashPassword } from '../utils/bcrypt'
 import {prisma} from '../configs/config'
 import { UserAuth } from '../models/user.model'
+import { generateAccessToken } from '../utils/jwt'
 
 export const createUser=async(username:string,password:string):Promise<UserAuth|Error|undefined>=>{
     const hashedPassword=await hashPassword(password);
     try{
-        await prisma.user.create({
+        const user=await prisma.user.create({
             data:{
                 username,
                 password:hashedPassword
@@ -14,7 +15,7 @@ export const createUser=async(username:string,password:string):Promise<UserAuth|
         })
 
         return {
-            token:"test",
+            token:generateAccessToken({username,id:user.id}) as string,
             status:200
         }
     }catch(err:any){
