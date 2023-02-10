@@ -1,13 +1,15 @@
-import { Error } from 'models/error.model'
+import { Error } from '../models/error.model'
+import { hashPassword } from '../utils/bcrypt'
 import {prisma} from '../configs/config'
 import { UserAuth } from '../models/user.model'
 
 export const createUser=async(username:string,password:string):Promise<UserAuth|Error|undefined>=>{
+    const hashedPassword=await hashPassword(password);
     try{
         await prisma.user.create({
             data:{
                 username,
-                password
+                password:hashedPassword
             }
         })
 
