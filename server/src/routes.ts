@@ -8,4 +8,7 @@ const router:Router=express.Router();
 router.use("/auth",authController)
 
 router.use("/profile",jwtAuth,profileController)
+
+router.use("/chat",jwtAuth,chatController)
+
 export default router;
