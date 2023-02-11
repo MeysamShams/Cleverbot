@@ -1,7 +1,7 @@
 import express,{Router,Request,Response} from 'express'
 import { createUser, login } from '../services/auth.service';
 import { body } from 'express-validator';
-import { validateInputs } from 'middlewares/validator.middleware';
+import { validateInputs } from '../middlewares/validator.middleware';
 
 const router:Router=express.Router();
 
