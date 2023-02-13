@@ -1,7 +1,7 @@
 import { Error } from "../models/error.model";
 import { oa } from "../configs/config"
 import { SendMessageResponse } from "models/message.model";
-import { updateRemainingRequests } from "./dailyRequests.service";
+import { getRemainingRequests } from "./dailyRequests.service";
 
 export const sendMessage=async(message:string,username:string):Promise<SendMessageResponse|Error>=>{
     try{
@@ -12,7 +12,7 @@ export const sendMessage=async(message:string,username:string):Promise<SendMessa
         })
 
         // update remaining requests
-        const remainingRequests:number=await updateRemainingRequests(username)
+        const remainingRequests:number=await getRemainingRequests(username)
         return {
             response:response?.data?.choices[0]?.text as string,
             remainingRequests,

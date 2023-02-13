@@ -1,25 +1,30 @@
 import { prisma } from "../configs/config"
 
-export const updateRemainingRequests=async(username:string):Promise<number>=>{
+export const getRemainingRequests=async(username:string):Promise<number>=>{
     try{
-        const user=await prisma.user.update({
+        const user=await prisma.user.findUnique({
             where:{username},
-            data:{
-                remainingRequests:{
-                    decrement:1
+            select:{
+                dailyRequests:true,
+                _count:{
+                    select:{
+                        messages: {
+                            where: {
+                                createdAt:{
+                                    gte: new Date(new Date().setUTCHours(0,0,0,0))
+                                } 
+                             },
+                        },                    
+                    }
                 }
             }
         })
-        return user?.remainingRequests
-    }catch(err){
+        const userDailyRequests=user?.dailyRequests;
+        const userMessagesCount=user?._count.messages
+        if(userDailyRequests && userMessagesCount)
+        return userDailyRequests-userDailyRequests
+        else
         return 0
-    }
-}
-
-export const getRemainingRequests=async(username:string):Promise<number>=>{
-    try{
-        const user=await prisma.user.findUnique({where:{username}})
-        return user?.remainingRequests || 0
     }catch(err){
         return 0
     }
