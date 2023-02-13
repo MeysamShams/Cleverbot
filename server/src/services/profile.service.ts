@@ -11,7 +11,6 @@ export const getUserByUsername=async(username:string):Promise<User|null|Error>=>
             select:{
                 username:true,
                 id:true,
-                remainingRequests:true,
                 dailyRequests:true,
                 createdAt:true
             }

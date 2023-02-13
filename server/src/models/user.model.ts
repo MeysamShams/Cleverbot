@@ -10,7 +10,6 @@ export interface User{
     username:string
     createdAt:Date
     dailyRequests: number
-    remainingRequests: number
 }
 export interface UserRequest extends Request {
     user:string
