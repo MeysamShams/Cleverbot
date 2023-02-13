@@ -16,7 +16,6 @@ model User {
   password  String?
   messages   Message[]
   dailyRequests Int @default(30)
-  remainingRequests Int @default(30)
   createdAt DateTime  @default(now())
 }
 
