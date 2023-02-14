@@ -24,7 +24,7 @@ export const getRemainingRequests=async(username:string):Promise<number>=>{
         })
         const userDailyRequests=user?.dailyRequests;
         const userMessagesCount=user?._count.messages
-        if(userDailyRequests && userMessagesCount)
+        if(userDailyRequests!=undefined && userMessagesCount!=undefined)
             return userDailyRequests-userMessagesCount;
         else
             return 0
