@@ -14,7 +14,7 @@ export const jwtAuth=(req:UserRequest|any,res:Response,next:NextFunction)=>{
             if(err)  res.status(403).send({error:"Forbidden !",status:403})
     
             req['user']=user?.username as string;
-    
+            req['userId']=user?.id as number
             next();
         })
     }

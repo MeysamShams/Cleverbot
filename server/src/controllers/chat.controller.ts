@@ -12,7 +12,7 @@ router.post("/",
     body("message").isLength({min:1}),
     validateInputs,
     async(req:UserRequest|any,res:Response)=>{
-        res.send(await sendMessage(req.body?.message,req?.user))
+        res.send(await sendMessage(req.body?.message,req?.userId))
 })
 
 export const chatController=router;

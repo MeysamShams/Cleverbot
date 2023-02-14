@@ -13,4 +13,5 @@ export interface User{
 }
 export interface UserRequest extends Request {
     user:string
+    userId:number
 }   
