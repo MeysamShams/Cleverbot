@@ -10,9 +10,12 @@ export const getRemainingRequests=async(username:string):Promise<number>=>{
                     select:{
                         messages: {
                             where: {
-                                createdAt:{
-                                    gte: new Date(new Date().setUTCHours(0,0,0,0))
-                                } 
+                                AND:{
+                                    createdAt:{
+                                        gte: new Date(new Date().setUTCHours(0,0,0,0))
+                                    },
+                                    sender:"AI"
+                                }
                              },
                         },                    
                     }
@@ -22,9 +25,9 @@ export const getRemainingRequests=async(username:string):Promise<number>=>{
         const userDailyRequests=user?.dailyRequests;
         const userMessagesCount=user?._count.messages
         if(userDailyRequests && userMessagesCount)
-        return userDailyRequests-userDailyRequests
+            return userDailyRequests-userMessagesCount;
         else
-        return 0
+            return 0
     }catch(err){
         return 0
     }
