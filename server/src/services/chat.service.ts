@@ -1,21 +1,35 @@
 import { Error } from "../models/error.model";
-import { oa } from "../configs/config"
+import { oa, prisma } from "../configs/config"
 import { SendMessageResponse } from "models/message.model";
-import { getRemainingRequests } from "./dailyRequests.service";
 
-export const sendMessage=async(message:string,username:string):Promise<SendMessageResponse|Error>=>{
-    try{
+export const sendMessage=async(message:string,userId:number):Promise<SendMessageResponse|Error>=>{
+    try{        
         // send message
         const response=await oa.openai.createCompletion({
             prompt:message,
             ...oa.modelConfiguration
+        })        
+        const reply=response?.data?.choices[0]?.text as string
+        
+        // Bulk insert is not supported in sqlite :((
+        // save user message into database
+        await prisma.message.create({
+            data:{
+                message,
+                sender:"user",
+                userId,
+            }
         })
-
-        // update remaining requests
-        const remainingRequests:number=await getRemainingRequests(username)
+        // save chatGPT response into database
+        await prisma.message.create({
+            data:{
+                message:reply,
+                sender:"AI",
+                userId,
+            }
+        })
         return {
-            response:response?.data?.choices[0]?.text as string,
-            remainingRequests,
+            response:reply,
             status:200
         }; 
 
