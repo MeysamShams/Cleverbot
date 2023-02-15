@@ -6,10 +6,11 @@ export interface UserAuth{
 }
 
 export interface User{
-    id:number
-    username:string
-    createdAt:Date
-    dailyRequests: number
+    id?:number
+    username?:string
+    createdAt?:Date
+    dailyRequests?: number
+    remainingRequests?:number
 }
 export interface UserRequest extends Request {
     user:string
