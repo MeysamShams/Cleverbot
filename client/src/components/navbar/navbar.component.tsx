@@ -1,5 +1,7 @@
+import { Path } from '@/routes/path.routes';
 import { ReactElement } from 'react';
 import { GitHub, ArrowUpRight, MessageSquare, User } from 'react-feather'
+import {Link} from 'react-router-dom'
 export const Navbar: React.FC = () => {
 
   const externalLinks: ReactElement[] = [
@@ -22,7 +24,7 @@ export const Navbar: React.FC = () => {
     </li>
   ]
   return (
-    <div className="navbar bg-base-100 fixed top-0 w-full sm:p-1 lg:p-5 z-50">
+    <div className="navbar bg-base-100  top-0 w-full sm:p-1 lg:p-5 z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-sm lg:hidden">
@@ -59,13 +61,13 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
       <div className="navbar-end">
-        <a className="btn btn-ghost normal-case mr-1">
+        <Link to={Path.Auth+Path.Login} className="btn btn-ghost normal-case mr-1">
           <User size={20} className="pr-1" />
           Login
-        </a>
-        <a className="btn btn-ghost normal-case text-white bg-gradient-to-r from-cyan-500 to-blue-500">
+        </Link>
+        <Link to={Path.Auth+Path.Register} className="btn btn-ghost normal-case text-white bg-gradient-to-r from-cyan-500 to-blue-500">
           Register
-        </a>
+        </Link>
       </div>
     </div>
   );
