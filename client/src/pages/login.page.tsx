@@ -2,12 +2,19 @@ import { Path } from "@/routes/path.routes";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { User, Lock, LogIn } from "react-feather";
 import { Link } from "react-router-dom";
-
+import { object } from "yup";
+import {string} from 'yup'
 export const LoginPage = () => {
   return (
     <div>
       <Formik
         initialValues={{ username: "", password: "" }}
+        validationSchema={
+            object({
+                username:string().required().matches(/^[a-zA-Z0-9]*$/,"only characters and digits").min(4).max(50),
+                password:string().required().min(6).max(50)
+            })
+        }
         onSubmit={() => {}}
       >
         {({ isSubmitting }) => (
@@ -16,7 +23,7 @@ export const LoginPage = () => {
               <LogIn className="mb-1 mx-auto" size={30} />
               <h1 className="font-bold">Login to your account</h1>
             </div>
-            <div className="form-control w-full mb-5">
+            <div className="form-control w-full mb-3">
               <label className="label">
                 <span className="label-text flex">
                   <User className="pr-2" />
@@ -29,9 +36,9 @@ export const LoginPage = () => {
                 className="text-sm input input-bordered w-full"
                 name="username"
               />
-              <ErrorMessage name="username" component="div" />
+              <ErrorMessage name="username" className="text-xs mt-2 text-error" component="div" />
             </div>
-            <div className="form-control w-full mb-5">
+            <div className="form-control w-full mb-3">
               <label className="label">
                 <span className="label-text flex">
                   <Lock className="pr-2" />
@@ -44,7 +51,7 @@ export const LoginPage = () => {
                 className="text-sm input input-bordered w-full"
                 name="password"
               />
-              <ErrorMessage name="password" component="div" />
+              <ErrorMessage name="password" className="text-xs mt-2 text-error" component="div" />
             </div>
             <button
               type="submit"
