@@ -1,13 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Navbar } from "@/components/navbar/navbar.component"
 import { Path } from "./path.routes";
+import { AuthLayout } from "@/layouts/auth.layout";
 export const router=createBrowserRouter([
     {
         path:Path.Home,
-        element:<h1>home page</h1>
+        element:<Navbar/>
     },
     {
         path:Path.Auth,
+        element:<AuthLayout/>,
         children:[{
             path:Path.Login,
             element:<h1>Login</h1>
