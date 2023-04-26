@@ -15,7 +15,8 @@
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
     "react-hot-toast": "^2.4.0",
-    "react-router-dom": "^6.8.1"
+    "react-router-dom": "^6.8.1",
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
