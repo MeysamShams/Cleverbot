@@ -27,9 +27,9 @@ export const Navbar: React.FC = () => {
     </li>
   ]
   return (
-    <div className='px-3'>
+    <div className='px-0'>
 
-    <div className="navbar bg-base-200 shadow-lg my-4 text-sm px-5 py-3 rounded-full  z-50 ">
+    <div className="navbar bg-base-200 shadow-lg  text-sm px-5 py-3 rounded-xl  z-50 ">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-sm lg:hidden">
@@ -72,11 +72,11 @@ export const Navbar: React.FC = () => {
               <Link to={Path.User+"/"+Path.Chat}>
               <Avatar name='meysam' />
               </Link>
-          <div className='text-xs leading-0'>          
+          <div className='text-xs leading-5'>          
           <span className='flex items-center gap-x-1'><User size={13}></User>Meysam</span>
-          <p>Remaining messages: 1</p>
-          <button onClick={()=>authCtx.logout()} className='btn btn-xs text-xs flex items-center gap-x-1  btn-ghost hover:bg-transparent text-error p-0'><LogOut size={13}/> Logout</button>
+          <p>Daily Credit: <span className='font-bold'>1</span></p> 
           </div>
+            <button onClick={()=>authCtx.logout()} className='btn ml-2 btn-xs text-xs flex items-center gap-x-1  btn-ghost hover:text-error hover:bg-transparent p-0'><LogOut size={20}/></button>
           </div>
           :
           <>
