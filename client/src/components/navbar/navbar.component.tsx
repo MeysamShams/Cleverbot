@@ -29,10 +29,10 @@ export const Navbar: React.FC = () => {
   return (
     <div className='px-0'>
 
-    <div className="navbar bg-base-200 shadow-lg  text-sm px-5 py-3 rounded-xl  z-50 ">
+    <div className="navbar bg-base-200 shadow-lg  text-sm px-3 md:px-5 py-3 rounded-xl  z-50 ">
       <div className="navbar-start">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost btn-sm lg:hidden">
+          <label tabIndex={0} className="btn btn-ghost px-2 btn-sm lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -73,10 +73,9 @@ export const Navbar: React.FC = () => {
               <PlaceholderAvatar name='meysam' />
               </Link>
           <div className='text-xs leading-5'>          
-          <span className='flex items-center gap-x-1'><User size={13}></User>Meysam</span>
-          <p>Daily Credit: <span className='font-bold'>1</span></p> 
+          <span className='flex items-center gap-x-1'><User size={15}></User>Meysam</span>
+            <button onClick={()=>authCtx.logout()} className='btn btn-xs text-error text-xs flex items-center gap-x-1  btn-ghost hover:text-error hover:bg-transparent p-0'><LogOut size={15}/> Logout</button>
           </div>
-            <button onClick={()=>authCtx.logout()} className='btn ml-2 btn-xs text-xs flex items-center gap-x-1  btn-ghost hover:text-error hover:bg-transparent p-0'><LogOut size={20}/></button>
           </div>
           :
           <>
