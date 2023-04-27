@@ -31,6 +31,12 @@ export const ChatPage = () => {
     }
   },[message.data?.data])
 
+  useEffect(()=>{
+    if(message.isError){        
+        removeLastMessage()
+    }
+  },[message.isError])
+
   const formik=useFormik({
     initialValues:{
         message:""
