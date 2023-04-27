@@ -8,11 +8,11 @@ export const useSend=<T>(service:Function):UseSend=>{
     const [isLoading,setIsLoading]=useState(false)
     const [isError,setIsError]=useState(false)
     const [data,setData]=useState(null)
-    const sendData=async(fields:T)=>{
+    const sendData=async(...fields:any)=>{
         try{
             setIsError(false)
             setIsLoading(true)
-            const data=await service(fields)
+            const data=await service(...fields)
             setIsLoading(false);
             setData(data)
     
