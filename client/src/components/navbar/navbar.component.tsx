@@ -3,7 +3,7 @@ import { Path } from '@/routes/path.routes';
 import { ReactElement, useContext } from 'react';
 import { GitHub, ArrowUpRight, MessageSquare, User, LogOut, ChevronDown } from 'react-feather'
 import {Link} from 'react-router-dom'
-import { Avatar } from '../ui/avatar.component';
+import { PlaceholderAvatar } from '../ui/avatar.component';
 export const Navbar: React.FC = () => {
   const authCtx=useContext(AuthContext)
 
@@ -56,7 +56,7 @@ export const Navbar: React.FC = () => {
           </ul>
         </div>
         <Link to="/" className="btn btn-link text-white px-2   no-underline hover:no-underline normal-case text-2xl items-center ">
-          <img src="https://cdn-icons-png.flaticon.com/512/2814/2814650.png" className="pr-3 no-animation" alt="logo" width={50} />
+          <img src="/clever.png" className="pr-3 no-animation" alt="logo" width={50} />
           <span className='invisible md:visible '>CleverBot</span>
         </Link>
         <div className="hidden lg:flex">
@@ -70,7 +70,7 @@ export const Navbar: React.FC = () => {
           authCtx.isLoggedIn ?
           <div className='flex items-center gap-x-3'>
               <Link to={Path.User+"/"+Path.Chat}>
-              <Avatar name='meysam' />
+              <PlaceholderAvatar name='meysam' />
               </Link>
           <div className='text-xs leading-5'>          
           <span className='flex items-center gap-x-1'><User size={13}></User>Meysam</span>
