@@ -83,7 +83,7 @@ export const ChatPage = () => {
             <span className="badge  p-4 ">Loading messages ...</span>
           </div>
         )}
-        {data?.data.total == 0 && (
+        {chats?.length == 0 && (
           <div className="text-center">
             <span className="badge  p-4 ">No messages found !</span>
           </div>
