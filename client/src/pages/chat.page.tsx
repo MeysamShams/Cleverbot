@@ -1,16 +1,66 @@
 import { ChatBubble } from "@/components/ui/chatBubble.component";
+import { Loading } from "@/components/ui/loading.component";
 import { useFetch } from "@/hooks/useFetch.hook";
-import { getMessages } from "@/services/chat.service";
-import { ChatMessage } from "@/types/chat.type";
+import { useSend } from "@/hooks/useSend.hook";
+import { getMessages, sendMessage } from "@/services/chat.service";
+import { ChatMessage, ChatResponse } from "@/types/chat.type";
 import { Pagination } from "@/types/http.type";
+import { useFormik } from "formik";
+import { useEffect, useState } from "react";
+import { Send } from "react-feather";
 
 export const ChatPage = () => {
   const { data, isError, isLoading } = useFetch<{
     data: Pagination<ChatMessage[]>;
   }>(getMessages(1));
 
+  const message=useSend<{data:ChatResponse}>(sendMessage)
+
+  const [chats,setChats]=useState<ChatMessage[]|undefined>()
+
+  useEffect(()=>{
+    setChats(data?.data.results)
+    
+  },[data])
+
+  useEffect(()=>{
+    const reply=message.data?.data.response
+    if(reply){
+        removeLastMessage()
+        setNewMessage(reply,"AI")
+    }
+  },[message.data?.data])
+
+  const formik=useFormik({
+    initialValues:{
+        message:""
+    },
+    onSubmit:(values)=>{
+        // messag
+        message.sendData(values.message)
+        setNewMessage(values.message,"user")
+        formik.resetForm()
+        setNewMessage('...',"AI",true)
+    }
+  })
+
+  const removeLastMessage=()=>setChats(prev=>prev?.slice(1))
+
+  const setNewMessage=(message:string,sender:"AI"|"user",isLoading?:boolean)=>setChats(prev=>[{
+    id:Math.random()*10000,
+    createdAt:new Date().toISOString(),
+    message,
+    sender,
+    userId:"1",
+    isLoading,
+    user:{
+        username:""
+    }
+  },...prev])
+  
   return (
-    <div className="relative scroll-bar flex flex-col-reverse w-full p-3 md:w-6/12 lg:w-5/12 mx-auto  h-[calc(100vh_-_75px)] overflow-x-auto bg-base-200 shadow-lg">
+    <>    
+    <div className="relative scroll-bar flex flex-col-reverse w-full p-3 md:w-6/12 lg:w-5/12 mx-auto  h-[calc(100vh_-_144px)] overflow-x-auto bg-base-200">
       <div className="absolute top-10 w-full left-0 ">
         {isError && (
           <div className="text-center">
@@ -30,7 +80,7 @@ export const ChatPage = () => {
           </div>
         )}
       </div>
-      {data?.data.results.map((item) => {
+      {chats?.map((item) => {
         return (
           <ChatBubble
             key={item.id}
@@ -38,9 +88,20 @@ export const ChatPage = () => {
             createdAt={item.createdAt}
             message={item.message}
             sender={item.sender}
+            isLoading={item.isLoading}
           />
         );
       })}
+
     </div>
+      <form onSubmit={formik.handleSubmit} className="fixed bottom-0 w-full left-0 mt-1 right-0 mx-auto  md:w-6/12 lg:w-5/12 ">
+            <div className="relative">
+            <input type="text" name="message" value={formik.values.message} onChange={formik.handleChange} className="input input-lg w-full rounded-none bg-base-200 text-sm focus:outline-0" placeholder="Your Text ..."/>
+            <button disabled={formik.values.message.length==0 || message.isLoading } className="btn btn-sm btn-ghost disabled:bg-transparent hover:bg-transparent absolute right-0 top-5" type="submit">
+                <Send/>
+            </button>
+            </div>
+      </form>
+    </>
   );
 };
