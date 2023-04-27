@@ -28,7 +28,7 @@ export const AuthPage = ({type}:{type:"register"|"login"}) => {
     
   },[data])
   return (
-    <div className="bg-base-200 px-5 py-4 rounded-xl shadow-xl ">
+    <div className="bg-base-200 px-4 py-4 rounded-xl shadow-xl ">
       <Formik
         initialValues={{ username: "", password: "" }}
         validationSchema={
@@ -55,7 +55,7 @@ export const AuthPage = ({type}:{type:"register"|"login"}) => {
             </div>
             <div className="form-control w-full mb-3">
               <label className="label">
-                <span className="label-text flex">
+                <span className="label-text flex items-center text-sm">
                   <User className="pr-2" />
                   Username
                 </span>
@@ -63,14 +63,14 @@ export const AuthPage = ({type}:{type:"register"|"login"}) => {
               <Field
                 type="text"
                 placeholder="Enter your username"
-                className="text-sm input input-bordered w-full"
+                className="text-sm input input-bordered w-full focus:outline-0"
                 name="username"
               />
               <ErrorMessage name="username" className="text-xs mt-2 text-error" component="div" />
             </div>
             <div className="form-control w-full mb-3">
               <label className="label">
-                <span className="label-text flex">
+                <span className="label-text flex items-center text-sm">
                   <Lock className="pr-2" />
                   Password
                 </span>
@@ -78,14 +78,14 @@ export const AuthPage = ({type}:{type:"register"|"login"}) => {
               <Field
                 type="password"
                 placeholder="Enter your password"
-                className="text-sm input input-bordered w-full"
+                className="text-sm input input-bordered w-full focus:outline-0"
                 name="password"
               />
               <ErrorMessage name="password" className="text-xs mt-2 text-error" component="div" />
             </div>
             <button
               type="submit"
-              className={`btn btn-primary btn-block ${
+              className={`btn btn-primary mt-3 btn-block ${
                 isLoading ? "loading" : ""
               }`}
             >

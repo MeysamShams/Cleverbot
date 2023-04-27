@@ -29,7 +29,7 @@ export const Navbar: React.FC = () => {
   return (
     <div className='px-0'>
 
-    <div className="navbar bg-base-200 shadow-lg  text-sm px-3 md:px-5 py-3 rounded-xl  z-50 ">
+    <div className="navbar bg-base-200 shadow  text-sm px-3 md:px-5 py-3 rounded-xl  z-50 ">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost px-2 btn-sm lg:hidden">
