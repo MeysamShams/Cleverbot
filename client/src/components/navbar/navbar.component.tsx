@@ -53,9 +53,9 @@ export const Navbar: React.FC = () => {
             {externalLinks}
           </ul>
         </div>
-        <Link to={Path.Home} className="btn btn-link text-white px-2    no-underline hover:no-underline normal-case text-2xl items-center ">
+        <Link to={Path.Home} className="btn btn-link text-white px-2   no-underline hover:no-underline normal-case text-2xl items-center ">
           <img src="https://cdn-icons-png.flaticon.com/512/2814/2814650.png" className="pr-3 no-animation" alt="logo" width={50} />
-          CleverBot
+          <span className='invisible md:visible '>CleverBot</span>
         </Link>
         <div className="hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
