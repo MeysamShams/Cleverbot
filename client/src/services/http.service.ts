@@ -27,27 +27,8 @@ const handleErrors = (error: any): void => {
         // redirect to 500 error page
         toast.error("Server Error :(", { id: "500" });
       } else if (statusCode >= 400 && statusCode < 500) {
-        // bad request
-        if (statusCode === 400) {
-          toast.error(errorMessage, { id: "400" });
-        }
-        // unauthorized
-        if (statusCode === 401) {
-          toast.error(errorMessage, { id: "401" });
-        }
-        // forbidden
-        if (statusCode === 403) {
-          toast.error("Forbidden!", { id: "403" });
-        }
-        // not found
-        if (statusCode === 404) {
-          // redirect to 404 error page
-          toast.error("Not found!", { id: "404" });
-        }
-        // conflict
-        if (statusCode === 409) {
-          toast.error(errorMessage, { id: "409" });
-        }
+        toast.error(errorMessage,{id:statusCode.toString()})
+
       } else {
         toast.error("Sorry, an error has occurred :(", { id: "unkown" });
       }
