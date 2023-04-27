@@ -70,10 +70,10 @@ export const Navbar: React.FC = () => {
           authCtx.isLoggedIn ?
           <div className='flex items-center gap-x-3'>
               <Link to={Path.User+"/"+Path.Chat}>
-              <PlaceholderAvatar name='meysam' />
+              <PlaceholderAvatar name={authCtx.userInfo?.username||""} />
               </Link>
           <div className='text-xs leading-5'>          
-          <span className='flex items-center gap-x-1'><User size={15}></User>Meysam</span>
+          <span className='flex items-center gap-x-1'><User size={15}></User>{authCtx.userInfo?.username}</span>
             <button onClick={()=>authCtx.logout()} className='btn btn-xs text-error text-xs flex items-center gap-x-1  btn-ghost hover:text-error hover:bg-transparent p-0'><LogOut size={15}/> Logout</button>
           </div>
           </div>

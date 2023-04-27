@@ -8,3 +8,8 @@ export interface LoginResponse{
     error?:string
     status:number
 }
+
+export interface UserInfo{
+    username:string|null
+    userId:string|null
+}

@@ -2,6 +2,7 @@ import { AuthContext } from "@/context/auth.context";
 import { useSend } from "@/hooks/useSend.hook";
 import { Path } from "@/routes/path.routes";
 import { authentication } from "@/services/auth.service";
+import { extractUserInfoFromToken } from "@/services/jwt.service";
 import { AuthCredential } from "@/types/auth.type";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useContext, useEffect } from "react";
@@ -15,9 +16,15 @@ export const AuthPage = ({type}:{type:"register"|"login"}) => {
   const authCtx=useContext(AuthContext)
 
   useEffect(()=>{
+    let timeOut:number;
     if(data){
-     authCtx.login()
+      timeOut=setTimeout(()=>{
+        const token=localStorage.getItem("token")
+        authCtx.login()
+        authCtx.setUserInfoOnLogin(extractUserInfoFromToken(token))
+     },500)
     }
+    return ()=>clearTimeout(timeOut)
     
   },[data])
   return (

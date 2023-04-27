@@ -1,18 +1,21 @@
 import { ChatBubble } from "@/components/ui/chatBubble.component";
 import { Loading } from "@/components/ui/loading.component";
+import { AuthContext } from "@/context/auth.context";
 import { useFetch } from "@/hooks/useFetch.hook";
 import { useSend } from "@/hooks/useSend.hook";
 import { getMessages, sendMessage } from "@/services/chat.service";
 import { ChatMessage, ChatResponse } from "@/types/chat.type";
 import { Pagination } from "@/types/http.type";
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Send } from "react-feather";
 
 export const ChatPage = () => {
   const { data, isError, isLoading } = useFetch<{
     data: Pagination<ChatMessage[]>;
   }>(getMessages(1));
+
+  const authCtx=useContext(AuthContext)
 
   const message=useSend<{data:ChatResponse}>(sendMessage)
 
@@ -57,10 +60,10 @@ export const ChatPage = () => {
     createdAt:new Date().toISOString(),
     message,
     sender,
-    userId:"1",
+    userId:authCtx.userInfo?.userId,
     isLoading,
     user:{
-        username:""
+        username:authCtx.userInfo?.username
     }
   },...prev])
   
