@@ -49,7 +49,8 @@ export const getMessages=async(userId:number,page:number):Promise<{page:number,t
         const messages=await prisma.message.findMany({
                 where:{userId},
                 skip:(page-1)*itemPerPage,
-                take:itemPerPage
+                take:itemPerPage,
+                orderBy:{createdAt:"desc"}
             })
         return {
             page:page,
