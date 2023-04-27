@@ -34,3 +34,30 @@
         border-color: orange; 
     }
 }
+
+.scroll-bar{
+    scrollbar-color: #35364b45 transparent;
+    scrollbar-width: medium;
+    overflow-y: scroll !important;
+  }
+
+  /* width */
+  .scroll-bar::-webkit-scrollbar {
+  width: 7px;
+  }
+  
+  /* Track */
+ .scroll-bar::-webkit-scrollbar-track {
+  background:transparent
+  }
+  
+  /* Handle */
+  .scroll-bar::-webkit-scrollbar-thumb {
+  background: #35364b45; 
+  cursor: pointer;
+  }
+  
+  /* Handle on hover */
+  .scroll-bar::-webkit-scrollbar-thumb:hover {
+  background: #454661; 
+  }
