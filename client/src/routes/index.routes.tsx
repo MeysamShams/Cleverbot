@@ -4,6 +4,7 @@ import { Path } from "./path.routes";
 import { AuthLayout } from "@/layouts/auth.layout";
 import { AuthPage } from "@/pages/auth.page";
 import { NotFound } from "@/components/ui/404.component";
+import { UserLayout } from "@/layouts/user.layout";
 export const router=createBrowserRouter([
     {
         path:Path.Home,
@@ -23,6 +24,7 @@ export const router=createBrowserRouter([
 
     {
         path:Path.User,
+        element:<UserLayout/>,
         children:[{
             path:Path.Chat,
             element:<h1>Chat</h1>
