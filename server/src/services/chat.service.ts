@@ -1,6 +1,7 @@
 import { Error } from "../models/error.model";
 import { oa, prisma } from "../configs/config"
 import { SendMessageResponse } from "models/message.model";
+import { Message } from "@prisma/client";
 
 export const sendMessage=async(message:string,userId:number):Promise<SendMessageResponse|Error>=>{
     try{        
@@ -40,3 +41,28 @@ export const sendMessage=async(message:string,userId:number):Promise<SendMessage
         }
     }
 }
+
+export const getMessages=async(userId:number,page:number):Promise<{page:number,total:number,itemPerPage:number,results:Message[]}|Error>=>{
+    try{
+        const itemPerPage=50   
+        const totalItems=await prisma.message.count({where:{userId}})
+        const messages=await prisma.message.findMany({
+                where:{userId},
+                skip:(page-1)*itemPerPage,
+                take:itemPerPage
+            })
+        return {
+            page:page,
+            total:totalItems,
+            itemPerPage,
+            results:messages
+        };
+
+    }catch(err){
+        return {
+            error:"Failed to load messages!",
+            status:500
+        }
+    }
+}
+
