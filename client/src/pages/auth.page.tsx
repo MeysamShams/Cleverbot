@@ -1,11 +1,25 @@
+import { AuthContext } from "@/context/auth.context";
+import { useSend } from "@/hooks/useSend.hook";
 import { Path } from "@/routes/path.routes";
+import { authentication } from "@/services/auth.service";
+import { AuthCredential } from "@/types/auth.type";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { User, Lock, UserPlus } from "react-feather";
+import { useContext, useEffect } from "react";
+import { User, Lock, LogIn, UserPlus } from "react-feather";
 import { Link } from "react-router-dom";
 import { object } from "yup";
 import {string} from 'yup'
+export const AuthPage = ({type}:{type:"register"|"login"}) => {
 
-export const RegisterPage = () => {
+  const {isLoading,data,sendData}=useSend<AuthCredential>(authentication)
+  const authCtx=useContext(AuthContext)
+
+  useEffect(()=>{
+    if(data){
+     authCtx.login()
+    }
+    
+  },[data])
   return (
     <div>
       <Formik
@@ -16,13 +30,21 @@ export const RegisterPage = () => {
                 password:string().required().min(6).max(50)
             })
         }
-        onSubmit={() => {}}
+        onSubmit={(values:AuthCredential) =>sendData(values,type)}
       >
         {({ isSubmitting }) => (
           <Form>
             <div className="text-center mb-4">
-              <UserPlus className="mb-1 mx-auto" size={30} />
-              <h1 className="font-bold">Create an account</h1>
+
+              {
+                type=="register" ? 
+                <><UserPlus className="mb-1 mx-auto" size={30} />
+                <h1 className="font-bold">Create an account</h1></>
+                :
+                <><LogIn className="mb-1 mx-auto" size={30} />
+                <h1 className="font-bold">Login to your account</h1></>
+              }
+
             </div>
             <div className="form-control w-full mb-3">
               <label className="label">
@@ -33,7 +55,7 @@ export const RegisterPage = () => {
               </label>
               <Field
                 type="text"
-                placeholder="At least 4 characters"
+                placeholder="Enter your username"
                 className="text-sm input input-bordered w-full"
                 name="username"
               />
@@ -48,7 +70,7 @@ export const RegisterPage = () => {
               </label>
               <Field
                 type="password"
-                placeholder="At least 6 characters"
+                placeholder="Enter your password"
                 className="text-sm input input-bordered w-full"
                 name="password"
               />
@@ -57,16 +79,16 @@ export const RegisterPage = () => {
             <button
               type="submit"
               className={`btn btn-primary btn-block ${
-                isSubmitting ? "loading" : ""
+                isLoading ? "loading" : ""
               }`}
             >
-              Register
+              Login
             </button>
             <Link
-              to={Path.Auth + Path.Login}
+              to={Path.Auth + Path.Register}
               className="text-xs btn-block mt-2 hover:bg-transparent font-light btn btn-ghost btn-sm"
             >
-              Do you have an account?
+              Don't have an account?
             </Link>
           </Form>
         )}
