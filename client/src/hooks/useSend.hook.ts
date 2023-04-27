@@ -1,13 +1,13 @@
 import { UseHttpInterface } from "@/types/http.type"
 import { useState } from "react"
 
-interface UseSend extends UseHttpInterface{
+interface UseSend<T> extends UseHttpInterface<T>{
     sendData:Function
 }
-export const useSend=<T>(service:Function):UseSend=>{
+export const useSend=<T>(service:Function):UseSend<T>=>{
     const [isLoading,setIsLoading]=useState(false)
     const [isError,setIsError]=useState(false)
-    const [data,setData]=useState(null)
+    const [data,setData]=useState(undefined)
     const sendData=async(...fields:any)=>{
         try{
             setIsError(false)
