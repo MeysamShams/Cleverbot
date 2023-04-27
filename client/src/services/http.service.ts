@@ -66,8 +66,8 @@ const handleErrors = (error: any): void => {
 
 const extractErrorMessage = (errors: any): string => {
   let errorMessage = "";
-  if (errors && typeof errors==="object") {
-    Object.keys(errors).forEach((msg: string) => (errorMessage += errors[msg] + "\n"));
+  if (errors && typeof errors==="object") {    
+    Object.keys(errors).forEach((msg: string) => msg!="status" && (errorMessage += errors[msg] + "\n"));
   } else if (typeof errors === "string") errorMessage = errors;
   else errorMessage = "Sorry, an error has occurred :(";
   return errorMessage;
