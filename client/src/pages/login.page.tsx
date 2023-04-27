@@ -1,10 +1,25 @@
+import { AuthContext } from "@/context/auth.context";
+import { useSend } from "@/hooks/useSend.hook";
 import { Path } from "@/routes/path.routes";
+import { loginService } from "@/services/auth.service";
+import { AuthCredential } from "@/types/auth.type";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useContext, useEffect } from "react";
 import { User, Lock, LogIn } from "react-feather";
 import { Link } from "react-router-dom";
 import { object } from "yup";
 import {string} from 'yup'
 export const LoginPage = () => {
+
+  const {isLoading,data,sendData}=useSend<AuthCredential>(loginService)
+  const authCtx=useContext(AuthContext)
+
+  useEffect(()=>{
+    if(data){
+     authCtx.login()
+    }
+    
+  },[data])
   return (
     <div>
       <Formik
@@ -15,7 +30,7 @@ export const LoginPage = () => {
                 password:string().required().min(6).max(50)
             })
         }
-        onSubmit={() => {}}
+        onSubmit={(values:AuthCredential) =>sendData(values)}
       >
         {({ isSubmitting }) => (
           <Form>
@@ -56,7 +71,7 @@ export const LoginPage = () => {
             <button
               type="submit"
               className={`btn btn-primary btn-block ${
-                isSubmitting ? "loading" : ""
+                isLoading ? "loading" : ""
               }`}
             >
               Login
