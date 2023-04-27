@@ -21,7 +21,7 @@ export const AuthPage = ({type}:{type:"register"|"login"}) => {
     
   },[data])
   return (
-    <div className="bg-base-200 px-5 py-4 rounded-2xl shadow-xl ">
+    <div className="bg-base-200 px-5 py-4 rounded-xl shadow-xl ">
       <Formik
         initialValues={{ username: "", password: "" }}
         validationSchema={
