@@ -1,11 +1,13 @@
 import { getHourAndMinuteFromDate } from "@/utils/date.utils";
 import { ImageAvatar, PlaceholderAvatar } from "./avatar.component";
+import { Loading } from "./loading.component";
 
 interface ChatBubble {
   message: string;
   createdAt: string;
   username?: string;
   sender: "AI" | "user";
+  isLoading?:boolean
 }
 export const ChatBubble = (props: ChatBubble) => {
   const chatDirection = props.sender == "AI" ? "chat-start" : "chat-end";
@@ -19,7 +21,7 @@ export const ChatBubble = (props: ChatBubble) => {
         )}
       </div>
 
-      <div className="chat-bubble">{props.message}</div>
+      <div className="chat-bubble ">{props.isLoading ? <Loading className="mt-2"/> : props.message}</div>
       <div className="chat-footer opacity-50">
         <span className="text-xs">
           {getHourAndMinuteFromDate(props.createdAt)}
