@@ -8,7 +8,7 @@ export const Navbar: React.FC = () => {
   const authCtx=useContext(AuthContext)
 
   const externalLinks: ReactElement[] = [
-    <li>
+    <li key={1}>
       <a
         href="https://github.com/MeysamShams/Cleverbot"
         target={"_blank"}
@@ -18,7 +18,7 @@ export const Navbar: React.FC = () => {
         <ArrowUpRight size={17} />
       </a>
     </li>,
-    <li>
+    <li key={2}>
       <a href="https://chat.openai.com" target={"_blank"}>
         <MessageSquare />
         ChatGPT
@@ -27,7 +27,9 @@ export const Navbar: React.FC = () => {
     </li>
   ]
   return (
-    <div className="navbar bg-base-100  top-0 w-full sm:p-1 lg:p-5 z-50">
+    <div className='px-3'>
+
+    <div className="navbar bg-base-200 shadow-lg my-4 text-sm px-5 py-3 rounded-full  z-50 ">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-sm lg:hidden">
@@ -67,7 +69,9 @@ export const Navbar: React.FC = () => {
         {
           authCtx.isLoggedIn ?
           <div className='flex items-center gap-x-3'>
+              <Link to={Path.User+"/"+Path.Chat}>
               <Avatar name='meysam' />
+              </Link>
           <div className='text-xs leading-0'>          
           <span className='flex items-center gap-x-1'><User size={13}></User>Meysam</span>
           <p>Remaining messages: 1</p>
@@ -76,11 +80,11 @@ export const Navbar: React.FC = () => {
           </div>
           :
           <>
-          <Link to={Path.Auth+Path.Login} className="btn btn-ghost normal-case mr-1">
+          <Link to={Path.Auth+Path.Login} className="btn btn-ghost mr-1">
             <User size={20} className="pr-1" />
             Login
           </Link>
-          <Link to={Path.Auth+Path.Register} className="btn btn-ghost normal-case text-white bg-gradient-to-r from-cyan-500 to-blue-500">
+          <Link to={Path.Auth+Path.Register} className="btn btn-ghost text-white bg-gradient-to-b from-cyan-500 border-0 to-blue-500">
             Register
           </Link>
           </>
@@ -88,6 +92,7 @@ export const Navbar: React.FC = () => {
         }
 
       </div>
+    </div>
     </div>
   );
 };
