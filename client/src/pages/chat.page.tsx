@@ -60,7 +60,7 @@ export const ChatPage = () => {
   
   return (
     <>    
-    <div className="relative scroll-bar flex flex-col-reverse w-full p-3 md:w-6/12 lg:w-5/12 mx-auto  h-[calc(100vh_-_144px)] overflow-x-auto bg-base-200">
+    <div className="relative pb-14 md:pb-5 scroll-bar flex flex-col-reverse w-full p-3 md:w-6/12 lg:w-5/12 mx-auto  h-[calc(100vh_-_144px)] overflow-x-auto bg-base-200">
       <div className="absolute top-10 w-full left-0 ">
         {isError && (
           <div className="text-center">
