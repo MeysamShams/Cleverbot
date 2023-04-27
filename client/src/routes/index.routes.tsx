@@ -3,6 +3,7 @@ import { Navbar } from "@/components/navbar/navbar.component"
 import { Path } from "./path.routes";
 import { AuthLayout } from "@/layouts/auth.layout";
 import { AuthPage } from "@/pages/auth.page";
+import { NotFound } from "@/components/ui/404.component";
 export const router=createBrowserRouter([
     {
         path:Path.Home,
@@ -30,4 +31,8 @@ export const router=createBrowserRouter([
             element:<h1>Profile</h1>
         }]
     },
+    {
+        path:'*',
+        element:<NotFound/>
+    }
 ])
