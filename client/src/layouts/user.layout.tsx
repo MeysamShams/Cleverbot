@@ -9,7 +9,7 @@ export const UserLayout=()=>{
     return <>
     {!authCtx.isLoggedIn && <Navigate to={Path.Auth+Path.Login} replace={true}/>}
     <Navbar/>
-    <section className="w-full md:px-5 px-2">
+    <section className="w-full md:px-5 px-3">
         <Outlet/>
     </section>
     </>
