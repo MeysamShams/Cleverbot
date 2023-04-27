@@ -1,8 +1,11 @@
+import { AuthContext } from '@/context/auth.context';
 import { Path } from '@/routes/path.routes';
-import { ReactElement } from 'react';
-import { GitHub, ArrowUpRight, MessageSquare, User } from 'react-feather'
+import { ReactElement, useContext } from 'react';
+import { GitHub, ArrowUpRight, MessageSquare, User, LogOut, ChevronDown } from 'react-feather'
 import {Link} from 'react-router-dom'
+import { Avatar } from '../ui/avatar.component';
 export const Navbar: React.FC = () => {
+  const authCtx=useContext(AuthContext)
 
   const externalLinks: ReactElement[] = [
     <li>
@@ -61,13 +64,29 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
       <div className="navbar-end">
-        <Link to={Path.Auth+Path.Login} className="btn btn-ghost normal-case mr-1">
-          <User size={20} className="pr-1" />
-          Login
-        </Link>
-        <Link to={Path.Auth+Path.Register} className="btn btn-ghost normal-case text-white bg-gradient-to-r from-cyan-500 to-blue-500">
-          Register
-        </Link>
+        {
+          authCtx.isLoggedIn ?
+          <div className='flex items-center gap-x-3'>
+              <Avatar name='meysam' />
+          <div className='text-xs leading-0'>          
+          <span className='flex items-center gap-x-1'><User size={13}></User>Meysam</span>
+          <p>Remaining messages: 1</p>
+          <button onClick={()=>authCtx.logout()} className='btn btn-xs text-xs flex items-center gap-x-1  btn-ghost hover:bg-transparent text-error p-0'><LogOut size={13}/> Logout</button>
+          </div>
+          </div>
+          :
+          <>
+          <Link to={Path.Auth+Path.Login} className="btn btn-ghost normal-case mr-1">
+            <User size={20} className="pr-1" />
+            Login
+          </Link>
+          <Link to={Path.Auth+Path.Register} className="btn btn-ghost normal-case text-white bg-gradient-to-r from-cyan-500 to-blue-500">
+            Register
+          </Link>
+          </>
+
+        }
+
       </div>
     </div>
   );
