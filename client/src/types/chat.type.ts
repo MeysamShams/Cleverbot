@@ -7,4 +7,9 @@ export interface ChatMessage{
     userId:string   
     sender:"AI"|"user"    
     createdAt:string
+    isLoading?:boolean
+}
+export interface ChatResponse{
+    response:string,
+    status:number
 }
