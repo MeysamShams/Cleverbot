@@ -62,7 +62,7 @@ export const ChatPage = () => {
     user:{
         username:""
     }
-  },...prev])
+  },...prev || []])
   
   return (
     <>    
