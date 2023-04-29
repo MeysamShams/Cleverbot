@@ -12,7 +12,7 @@ interface ChatBubble {
 export const ChatBubble = (props: ChatBubble) => {
   const chatDirection = props.sender == "AI" ? "chat-start" : "chat-end";
   return (
-    <div className={`chat ${chatDirection} break-all`}>
+    <div className={`chat ${chatDirection} break-wrap leading-8`}>
       <div className="chat-image avatar">
         {props.sender == "AI" ? (
           <ImageAvatar src="/clever.png" />
