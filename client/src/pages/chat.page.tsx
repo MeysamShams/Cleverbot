@@ -43,7 +43,7 @@ export const ChatPage = () => {
     },
     onSubmit:(values)=>{
         // messag
-        message.sendData(values.message)
+        // message.sendData(values.message)
         setNewMessage(values.message,"user")
         formik.resetForm()
         setNewMessage('...',"AI",true)
@@ -67,7 +67,7 @@ export const ChatPage = () => {
   return (
     <>    
     <div className="relative pb-14 md:pb-5 scroll-bar flex flex-col-reverse w-full p-3 md:w-6/12 lg:w-5/12 mx-auto  h-[calc(100vh_-_144px)] overflow-x-auto bg-base-200">
-      <div className="absolute top-10 w-full left-0 ">
+      <div className="fixed top-24 w-full left-0 z-10 ">
         {isError && (
           <div className="text-center">
             <span className="badge badge-error  p-4 ">
@@ -77,12 +77,12 @@ export const ChatPage = () => {
         )}
         {isLoading && (
           <div className="text-center my-1">
-            <span className="badge  p-4 ">Loading messages ...</span>
+            <span className="badge  p-4 bg-opacity-80 ">Loading messages ...</span>
           </div>
         )}
         {data?.data.total == 0 && (
           <div className="text-center">
-            <span className="badge  p-4 ">No messages found !</span>
+            <span className="badge  p-4 bg-opacity-80 ">No messages found !</span>
           </div>
         )}
       </div>
@@ -103,7 +103,7 @@ export const ChatPage = () => {
       <form onSubmit={formik.handleSubmit} className="fixed bottom-0 w-full left-0 mt-1 right-0 mx-auto  md:w-6/12 lg:w-5/12 ">
             <div className="relative">
             <input type="text" name="message" value={formik.values.message} onChange={formik.handleChange} className="input input-lg w-full rounded-none bg-base-200 text-sm focus:outline-0" placeholder="Your Text ..."/>
-            <button disabled={formik.values.message.length==0 || message.isLoading } className="btn btn-sm btn-ghost disabled:bg-transparent hover:bg-transparent absolute right-0 top-5" type="submit">
+            <button disabled={formik.values.message.length==0 || message.isLoading } className="btn bg-base-200 text-primary btn-sm btn-ghost disabled:bg-transparent hover:bg-transparent absolute right-0 top-5" type="submit">
                 <Send/>
             </button>
             </div>
