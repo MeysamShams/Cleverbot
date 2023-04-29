@@ -42,8 +42,7 @@ export const ChatPage = () => {
         message:""
     },
     onSubmit:(values)=>{
-        // messag
-        // message.sendData(values.message)
+        message.sendData(values.message)
         setNewMessage(values.message,"user")
         formik.resetForm()
         setNewMessage('...',"AI",true)
