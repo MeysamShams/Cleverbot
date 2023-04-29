@@ -21,7 +21,7 @@ export const AuthPage = ({type}:{type:"register"|"login"}) => {
     
   },[data])
   return (
-    <div className="bg-base-200 px-5 py-4 rounded-xl shadow-xl ">
+    <div className="backdrop-blur bg-base-200/60 px-5 py-4 rounded-xl shadow ">
       <Formik
         initialValues={{ username: "", password: "" }}
         validationSchema={
@@ -85,7 +85,7 @@ export const AuthPage = ({type}:{type:"register"|"login"}) => {
               {type}
             </button>
             <Link
-              to={Path.Auth + Path.Register}
+              to={type=="register" ? Path.Auth+Path.Login : Path.Auth+Path.Register}
               className="text-xs btn-block mt-2 hover:bg-transparent font-light btn btn-ghost btn-sm"
             >
               {type==="login" ? "Don't have an account?" : "Do you have an account?"}

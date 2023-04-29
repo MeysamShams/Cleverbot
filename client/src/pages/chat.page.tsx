@@ -65,7 +65,7 @@ export const ChatPage = () => {
   
   return (
     <>    
-    <div className="relative pb-14 md:pb-5 scroll-bar flex flex-col-reverse w-full p-3 md:w-6/12 lg:w-5/12 mx-auto  h-[calc(100vh_-_144px)] overflow-x-auto bg-base-200">
+    <div className="relative pb-14 md:pb-5 scroll-bar flex flex-col-reverse w-full p-3  mx-auto  h-[calc(100vh_-_135px)] overflow-x-auto">
       <div className="fixed top-24 w-full left-0 z-10 ">
         {isError && (
           <div className="text-center">
@@ -99,10 +99,10 @@ export const ChatPage = () => {
       })}
 
     </div>
-      <form onSubmit={formik.handleSubmit} className="fixed bottom-0 w-full left-0 mt-1 right-0 mx-auto  md:w-6/12 lg:w-5/12 ">
+      <form onSubmit={formik.handleSubmit} className="fixed bottom-0 w-full left-0 mt-1 right-0 mx-auto  ">
             <div className="relative">
-            <input type="text" name="message" value={formik.values.message} onChange={formik.handleChange} className="input input-lg w-full rounded-none bg-base-200 text-sm focus:outline-0" placeholder="Your Text ..."/>
-            <button disabled={formik.values.message.length==0 || message.isLoading } className="btn bg-base-200 text-primary btn-sm btn-ghost disabled:bg-transparent hover:bg-transparent absolute right-0 top-5" type="submit">
+            <input type="text" name="message" value={formik.values.message} onChange={formik.handleChange} className="input input-lg w-full rounded-none filter backdrop-blur bg-base-200/60 bg-base-200 text-sm shadow focus:outline-0" placeholder="Your Message ..."/>
+            <button disabled={formik.values.message.length==0 || message.isLoading } className="btn bg-base-200 text-primary btn-sm btn-ghost disabled:bg-transparent hover:bg-transparent absolute right-3 top-5" type="submit">
                 <Send/>
             </button>
             </div>
