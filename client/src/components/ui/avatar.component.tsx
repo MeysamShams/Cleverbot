@@ -12,7 +12,7 @@ export const PlaceholderAvatar = (props: { name: string }) => {
 export const ImageAvatar = (props: { src: string }) => {
   return (
     <div className="avatar placeholder">
-      <div className="w-10 p-1 bg-neutral rounded-full">
+      <div className="w-10 p-1">
         <img src={props.src} />
       </div>
     </div>

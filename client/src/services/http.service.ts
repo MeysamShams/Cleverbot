@@ -55,7 +55,7 @@ const extractErrorMessage = (errors: any): string => {
 };
 
 // base url
-axios.defaults.baseURL = "http://127.0.0.1:5000";
+axios.defaults.baseURL = import.meta.env.VITE_SERVER;
 // handle authorization
 axios.interceptors.request.use(handleAuthorizationHeader);
 // error handling
