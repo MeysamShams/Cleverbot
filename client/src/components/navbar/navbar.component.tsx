@@ -57,7 +57,7 @@ export const Navbar: React.FC = () => {
         </div>
         <Link to="/" className="btn btn-link text-white px-2   no-underline hover:no-underline normal-case text-2xl items-center ">
           <img src="/clever.png" className="pr-3 no-animation" alt="logo" width={50} />
-          <span className='invisible md:visible '>CleverBot</span>
+          <span className='invisible md:visible poppins '>CleverBot</span>
         </Link>
         <div className="hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
