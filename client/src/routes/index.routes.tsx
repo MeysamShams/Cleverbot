@@ -1,15 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Navbar } from "@/components/navbar/navbar.component"
 import { Path } from "./path.routes";
 import { AuthLayout } from "@/layouts/auth.layout";
 import { AuthPage } from "@/pages/auth.page";
 import { NotFound } from "@/components/ui/404.component";
 import { UserLayout } from "@/layouts/user.layout";
 import { ChatPage } from "@/pages/chat.page";
+import { HomePage } from "@/pages/home.page";
 export const router=createBrowserRouter([
     {
         path:Path.Home,
-        element:<Navbar/>
+        element:<HomePage/>
     },
     {
         path:Path.Auth,
