@@ -54,17 +54,22 @@ export const ChatPage = () => {
 
   const removeLastMessage=()=>setChats(prev=>prev?.slice(1))
 
-  const setNewMessage=(message:string,sender:"AI"|"user",isLoading?:boolean)=>setChats(prev=>[{
+  const setNewMessage=(message:string,sender:"AI"|"user",isLoading?:boolean)=>setChats(prev=>{
+
+  const prevValues= prev? prev : [];
+  return [{
     id:Math.random()*10000,
     createdAt:new Date().toISOString(),
     message,
     sender,
-    userId:authCtx.userInfo?.userId,
+    userId:authCtx.userInfo?.userId||"",
     isLoading,
     user:{
-        username:authCtx.userInfo?.username
+        username:authCtx.userInfo?.username||""
     }
-  },...prev || []])
+ 
+  },...prevValues]
+  })
   
   return (
     <>    
