@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: vazir;
+    src: url('../fonts/vazir/Vazirmatn-Regular.ttf');
+    /* persian font */
+    unicode-range:U+0600-06FF;
+}
+
+@font-face {
+    font-family: poppins;
+    src: url('../fonts/poppins/Poppins-ExtraBold.ttf');
+    font-weight:bold;
+    /* english font */
+    unicode-range: U+0020-007F;
+}
+*{
+    font-family: vazir;
+    font-weight: normal;
+}
+.poppins{
+    font-family: poppins !important;
+}
 html{
     background-image: url('/bg.svg');
     background-size: cover;
