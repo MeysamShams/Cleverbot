@@ -21,7 +21,7 @@ export const ChatBubble = (props: ChatBubble) => {
         )}
       </div>
 
-      <div className="chat-bubble ">{props.isLoading ? <Loading className="mt-2"/> : props.message?.slice(2) /* reomve new line at the first of message*/ }</div>
+      <div className="chat-bubble ">{props.isLoading ? <Loading className="mt-2"/> : (props.sender==="AI"? props.message?.slice(2) :  props.message )/* reomve new line at the first of message from ai response*/ }</div>
       <div className="chat-footer opacity-50">
         <span className="text-xs">
           {getHourAndMinuteFromDate(props.createdAt)}
