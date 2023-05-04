@@ -7,11 +7,13 @@ export const HomePage=()=>{
     return <>
         <Navbar/>
         <div className="flex h-[calc(100vh_-_80px)]">
-        <div className="text-center w-full md:w-9/12 lg:w-7/12 m-auto">
+        <div className="text-center w-full md:w-9/12 lg:w-8/12 m-auto">
         <h1 className="mb-10 poppins animate-text  text-4xl md:text-7xl font-extrabold bg-gradient-to-r from-sky-400 via-rose-400 to-lime-400  text-transparent bg-clip-text">
         CELEVER BOT
         </h1>
-        <p className="text-lg leading-8 px-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, fuga dicta aliquam illum optio odio minus beatae, vero nesciunt nisi totam dolore? Voluptas sequi quo nobis exercitationem dolores, quasi eius.</p>
+        <p className=" leading-8 ">
+        Chat GPT-3 is a natural language processing (NLP) model developed by OpenAI. It is a large-scale autoregressive language model that uses deep learning to generate human-like text. It is trained on a dataset of millions of webpages and can generate human-like responses to questions and prompts.
+        </p>
         <div className="mt-10 flex flex-col md:flex-row items-center gap-3 justify-center">
         <Link className="btn btn-ghost text-white bg-gradient-to-r from-cyan-500 border-0 to-blue-500 " to={Path.Auth+Path.Register}>
             <UserPlus size={20} className="mr-3"/>
