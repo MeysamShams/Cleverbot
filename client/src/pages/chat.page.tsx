@@ -109,7 +109,7 @@ export const ChatPage = () => {
     </div>
       <form onSubmit={formik.handleSubmit} className="fixed bottom-0 w-full left-0 mt-1 right-0 mx-auto  ">
             <div className="relative">
-            <input type="text" name="message" value={formik.values.message} onChange={formik.handleChange} className="input input-lg w-full rounded-none filter backdrop-blur bg-base-200/60 bg-base-200 text-sm shadow focus:outline-0" placeholder="Your Message ..."/>
+            <input type="text" name="message" autoComplete="off" value={formik.values.message} onChange={formik.handleChange} className="input input-lg w-full rounded-none filter backdrop-blur bg-base-200/60 bg-base-200 text-sm shadow focus:outline-0" placeholder="Your Message ..."/>
             <button disabled={formik.values.message.length==0 || message.isLoading } className="btn bg-base-200 text-primary btn-sm btn-ghost disabled:bg-transparent hover:bg-transparent absolute right-3 top-5" type="submit">
                 <Send/>
             </button>
